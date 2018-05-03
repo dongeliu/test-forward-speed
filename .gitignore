@@ -1,0 +1,7 @@
+caffe
+mxnet
+opencv
+vc/x64
+*.db
+*.suo
+python/*

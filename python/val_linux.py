@@ -13,26 +13,36 @@ def calculatePSNR(orig, res):
   return numpy.log10(255 * 255 / mse) * 10
 
 if __name__ == '__main__':
-  # Prepare original (grayscale) and JPEG
+  # Set filenames
   grayscale_filenames = []
   jpeg_filenames = []
   for f in filenames:
     orig = skimage.io.imread(f)
     (fmain, _) = os.path.splitext(f)
     if orig.ndim > 2 and orig.shape[2] == 3:
-      orig = skimage.color.rgb2gray(orig)
-      skimage.io.imsave(fmain + '.pgm', orig)
       grayscale_filenames.append(fmain + '.pgm')
     else:
       grayscale_filenames.append(f)
-    skimage.io.imsave(fmain + '.jpg', orig, quality=25)
     jpeg_filenames.append(fmain + '.jpg')
 
-  # Cache path
-  original_path = os.getenv('path')
+  # os.putenv('path', r'..\caffe\dll;..\caffe\dll\release;' + original_path)
+  # cmd = r'..\vc\x64\Release\testCaffe.exe ' + ' '.join(jpeg_filenames)
+  # print(cmd)
+  # os.system(cmd)
 
-  os.putenv('path', r'..\caffe\dll;..\caffe\dll\release;' + original_path)
-  cmd = r'..\vc\x64\Release\testCaffe.exe ' + ' '.join(jpeg_filenames)
+  # for i in range(len(grayscale_filenames)):
+  #   orig = skimage.io.imread(grayscale_filenames[i])
+  #   comp = skimage.io.imread(jpeg_filenames[i])
+  #   (fmain, _) = os.path.splitext(jpeg_filenames[i])
+  #   try:
+  #     rest = skimage.io.imread(fmain + '_rec.pgm')
+  #     print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
+  #   except Exception as e:
+  #     print(e)
+  #   finally:
+  #     pass
+
+  cmd = '../src/testOpencvDnn ' + ' '.join(jpeg_filenames)
   print(cmd)
   os.system(cmd)
 
@@ -48,39 +58,22 @@ if __name__ == '__main__':
     finally:
       pass
 
-  os.putenv('path', r'..\opencv\dll;' + original_path)
-  cmd = r'..\vc\x64\Release\testOpencvDnn.exe ' + ' '.join(jpeg_filenames)
-  print(cmd)
-  os.system(cmd)
+  # os.putenv('path', r'..\mxnet\dll;..\opencv\dll;' + original_path)
+  # cmd = r'..\vc\x64\Release\testMxnet.exe ' + ' '.join(jpeg_filenames)
+  # print(cmd)
+  # os.system(cmd)
 
-  for i in range(len(grayscale_filenames)):
-    orig = skimage.io.imread(grayscale_filenames[i])
-    comp = skimage.io.imread(jpeg_filenames[i])
-    (fmain, _) = os.path.splitext(jpeg_filenames[i])
-    try:
-      rest = skimage.io.imread(fmain + '_rec.pgm')
-      print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
-    except Exception as e:
-      print(e)
-    finally:
-      pass
-
-  os.putenv('path', r'..\mxnet\dll;..\opencv\dll;' + original_path)
-  cmd = r'..\vc\x64\Release\testMxnet.exe ' + ' '.join(jpeg_filenames)
-  print(cmd)
-  os.system(cmd)
-
-  for i in range(len(grayscale_filenames)):
-    orig = skimage.io.imread(grayscale_filenames[i])
-    comp = skimage.io.imread(jpeg_filenames[i])
-    (fmain, _) = os.path.splitext(jpeg_filenames[i])
-    try:
-      rest = skimage.io.imread(fmain + '_rec.pgm')
-      print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
-    except Exception as e:
-      print(e)
-    finally:
-      pass
+  # for i in range(len(grayscale_filenames)):
+  #   orig = skimage.io.imread(grayscale_filenames[i])
+  #   comp = skimage.io.imread(jpeg_filenames[i])
+  #   (fmain, _) = os.path.splitext(jpeg_filenames[i])
+  #   try:
+  #     rest = skimage.io.imread(fmain + '_rec.pgm')
+  #     print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
+  #   except Exception as e:
+  #     print(e)
+  #   finally:
+  #     pass
 
   # model=mxnet.model.FeedForward.load('vrcnn',0,num_batch_size=1)
 

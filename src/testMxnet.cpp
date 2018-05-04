@@ -2,7 +2,11 @@
 
 #include <fstream>
 #include "mxnet/c_predict_api.h"
+#ifdef _MSC_VER
 #include "opencv2/imgcodecs/imgcodecs.hpp"
+#else
+#include "opencv2/highgui/highgui.hpp"
+#endif
 
 #include "Timer.h"
 

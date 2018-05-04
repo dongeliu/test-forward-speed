@@ -58,22 +58,21 @@ if __name__ == '__main__':
     finally:
       pass
 
-  # os.putenv('path', r'..\mxnet\dll;..\opencv\dll;' + original_path)
-  # cmd = r'..\vc\x64\Release\testMxnet.exe ' + ' '.join(jpeg_filenames)
-  # print(cmd)
-  # os.system(cmd)
+  cmd = '../src/testMxnet ' + ' '.join(jpeg_filenames)
+  print(cmd)
+  os.system(cmd)
 
-  # for i in range(len(grayscale_filenames)):
-  #   orig = skimage.io.imread(grayscale_filenames[i])
-  #   comp = skimage.io.imread(jpeg_filenames[i])
-  #   (fmain, _) = os.path.splitext(jpeg_filenames[i])
-  #   try:
-  #     rest = skimage.io.imread(fmain + '_rec.pgm')
-  #     print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
-  #   except Exception as e:
-  #     print(e)
-  #   finally:
-  #     pass
+  for i in range(len(grayscale_filenames)):
+    orig = skimage.io.imread(grayscale_filenames[i])
+    comp = skimage.io.imread(jpeg_filenames[i])
+    (fmain, _) = os.path.splitext(jpeg_filenames[i])
+    try:
+      rest = skimage.io.imread(fmain + '_rec.pgm')
+      print(calculatePSNR(orig, comp), calculatePSNR(orig, rest))
+    except Exception as e:
+      print(e)
+    finally:
+      pass
 
   # model=mxnet.model.FeedForward.load('vrcnn',0,num_batch_size=1)
 

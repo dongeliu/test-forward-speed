@@ -21,18 +21,18 @@ Results (Windows)
 
 Results (Linux)
 -------
-| Name     | Resolution | Before | Caffe  | OpenCV | mxnet  |
-|----------|------------|--------|--------|--------|--------|
-| BQSquare | 416x240    | 25.958 | xxxxxx | 27.473 | xxxxxx |
-| BQMall   | 832x480    | 30.280 | xxxxxx | 31.328 | xxxxxx |
-| Cactus   | 1920x1080  | 33.208 | xxxxxx | 33.957 | xxxxxx |
-| Traffic  | 2560x1600  | 35.059 | xxxxxx | 35.692 | xxxxxx |
-| Runners  | 3840x2160  | 33.254 | xxxxxx | 33.797 | xxxxxx |
+| Name     | Resolution | Before | OpenCV | mxnet  |
+|----------|------------|--------|--------|--------|
+| BQSquare | 416x240    | 25.958 | 27.473 | 27.473 |
+| BQMall   | 832x480    | 30.280 | 31.328 | 31.328 |
+| Cactus   | 1920x1080  | 33.208 | 33.957 | 33.957 |
+| Traffic  | 2560x1600  | 35.059 | 35.692 | 35.692 |
+| Runners  | 3840x2160  | 33.254 | 33.797 | 33.797 |
 
-| Name     | Resolution | Caffe    | OpenCV    | mxnet     |
-|----------|------------|----------|-----------|-----------|
-| BQSquare | 416x240    | xxxxxxxx | 0.267990  | xxxxxxxxx |
-| BQMall   | 832x480    | xxxxxxxx | 0.958070  | xxxxxxxxx |
-| Cactus   | 1920x1080  | xxxxxxxx | 4.983796  | xxxxxxxxx |
-| Traffic  | 2560x1600  | xxxxxxxx | 10.294819 | xxxxxxxxx |
-| Runners  | 3840x2160  | xxxxxxxx | 20.742526 | xxxxxxxxx |
+| Name     | Resolution | OpenCV    | mxnet     |
+|----------|------------|-----------|-----------|
+| BQSquare | 416x240    | 0.257206  | 0.362361  |
+| BQMall   | 832x480    | 0.996086  | 1.250999  |
+| Cactus   | 1920x1080  | 4.841618  | 6.952368  |
+| Traffic  | 2560x1600  | 10.005049 | 28.157753 |
+| Runners  | 3840x2160  | 19.899424 | fail      |

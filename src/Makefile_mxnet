@@ -1,0 +1,15 @@
+EXE = testMxnet
+#  
+
+LDFLAGS = -lmxnet -lopencv_highgui -lopencv_core
+# -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_dnn
+
+.PHONY: all clean
+
+all: $(EXE)
+
+$(EXE): % : %.cpp Timer.cpp Timer.h
+	$(CXX) -std=c++0x $(FLAGS) -o $@ $(filter %.cpp %.a, $^) $(LDFLAGS)
+
+clean:
+	rm -f $(EXE)

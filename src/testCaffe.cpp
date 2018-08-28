@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define BOOST_ALL_DYN_LINK
-#define CPU_ONLY
+// #define CPU_ONLY
 
 #include "caffe/caffe.hpp"
 #include "opencv2/imgcodecs/imgcodecs.hpp"
@@ -10,6 +10,20 @@
 int main(int argc, char** argv) {
 	google::InitGoogleLogging("testCaffe");
 	google::SetCommandLineOption("GLOG_minloglevel", "2");
+#ifdef CPU_ONLY
+	caffe::Caffe::set_mode(caffe::Caffe::CPU);
+	const char* mode = "CPU";
+#else
+	caffe::Caffe::set_mode(caffe::Caffe::GPU);
+	const char* mode = "GPU";
+#endif
+	if (argc == 1) {
+		printf("Caffe is running in %s mode\n", mode);
+		int deviceId = caffe::Caffe::FindDevice();
+		printf("The device %d is %s", deviceId, caffe::Caffe::CheckDevice(deviceId) ? "ready" : "not ready");
+		return EXIT_SUCCESS;
+	}
+
 	caffe::Net<float> net("VRCNN_net.prototxt", caffe::TEST);
 	net.CopyTrainedLayersFrom("_iter_116960_VC266_QTBT_DFonSAOALFoff_QP42.caffemodel");
 	auto input_layer = net.input_blobs()[0];
